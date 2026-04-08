@@ -315,9 +315,9 @@
 
 <script>
     // 앱 전용 접속 스크립트 (User-Agent 검사)
-    const USER_AGENT_KEY = "MyDictionaryApp"; // 사용자 앱에서 설정할 UA 키워드
+    const USER_AGENT_KEY = "ReademAll/1.0"; // 사용자 앱에서 설정할 UA 키워드
 
-    if (true) { // (navigator.userAgent.includes(USER_AGENT_KEY)) {
+    if (navigator.userAgent.includes(USER_AGENT_KEY)) {
         document.body.style.display = "block";
     } else {
         alert("이 페이지는 전 전용 사전 앱에서만 열람 가능합니다.");
