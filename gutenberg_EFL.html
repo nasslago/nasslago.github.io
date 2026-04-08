@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFL Reading Guide | Project Gutenberg</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --text: #333;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5; 
+            margin: 0; 
+            background-color: var(--bg); 
+            color: var(--text);
+            display: none; /* JS 인증 전 숨김 */
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container { padding: 15px; max-width: 800px; margin: auto; }
+
+        .age-group { margin-top: 40px; }
+        .age-group h2 {
+            background: var(--accent);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+
+        .book-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .book-img-container {
+            width: 100px;
+            min-width: 100px;
+            background: #eee;
+        }
+
+        .book-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .book-title {
+            font-weight: bold;
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .book-author {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .learning-point {
+            font-size: 0.8rem;
+            color: #555;
+            background: #f0f7ff;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* 모바일 대응: 가로 너비가 좁을 때 카드 정렬 */
+        @media (max-width: 480px) {
+            .book-card { flex-direction: column; }
+            .book-img-container { width: 100%; height: 180px; }
+            .book-img { object-fit: contain; background: #fdfdfd; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Project Gutenberg</h1>
+    <p style="margin:5px 0 0; font-size:0.9rem; opacity:0.8;">EFL Learners' Reading Guide</p>
+</header>
+
+<div class="container" id="main-content">
+    <section class="age-group">
+        <h2>유치원 (Pre-K)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/14838/pg14838.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div>
+                        <div class="book-title">The Tale of Peter Rabbit</div>
+                        <div class="book-author">Beatrix Potter</div>
+                        <div class="learning-point">반복적 구문과 명사를 그림과 함께 익히기 좋습니다.</div>
+                    </div>
+                    <a href="https://www.gutenberg.org/ebooks/14838" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/10607/pg10607.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">The Real Mother Goose</div><div class="book-author">Blanche Fisher Wright</div>
+                    <div class="learning-point">영어의 리듬감과 라임(Rhyme)을 배우는 기초 단계입니다.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/10607" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/11757/pg11757.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">The Velveteen Rabbit</div><div class="book-author">Margery Williams</div>
+                    <div class="learning-point">기초적인 감정 표현 형용사를 학습합니다.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/11757" class="btn-link">Read Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="age-group">
+        <h2>초등 저학년 (Early Elementary)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/11/pg11.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Alice's Adventures in Wonderland</div><div class="book-author">Lewis Carroll</div>
+                    <div class="learning-point">기초 의문문과 상상력을 자극하는 대화체 학습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/11" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/11339/pg11339.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Aesop's Fables</div><div class="book-author">Aesop</div>
+                    <div class="learning-point">짧은 우화를 통한 문장 구조 파악과 교훈 습득.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/11339" class="btn-link">Read Online</a>
+                </div>
+            </div>
+		<div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/2591/pg2591.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Grimms' Fairy Tales</div><div class="book-author">Jacob & Wilhelm Grimm</div>
+                    <div class="learning-point">익숙한 스토리 라인을 통한 어휘 확장.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/2591" class="btn-link">Read Online</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="age-group">
+        <h2>초등 고학년 (Late Elementary)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/113/pg113.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">The Secret Garden</div><div class="book-author">Frances Hodgson Burnett</div>
+                    <div class="learning-point">자연 묘사 및 인물의 성장을 나타내는 다양한 형용사.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/113" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/236/pg236.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">The Jungle Book</div><div class="book-author">Rudyard Kipling</div>
+                    <div class="learning-point">모험 관련 동사와 과거 시제 흐름 파악.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/236" class="btn-link">Read Online</a>
+                </div>
+            </div>
+		<div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/46409/pg46409.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Heidi</div><div class="book-author">Johanna Spyri</div>
+                    <div class="learning-point">감정 표현 및 배경 묘사 학습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/46409" class="btn-link">Read Online</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="age-group">
+        <h2>중등 (Middle School)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/74/pg74.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Tom Sawyer</div><div class="book-author">Mark Twain</div>
+                    <div class="learning-point">실제 구어체 표현과 미국식 영어 맥락 이해.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/74" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/45/pg45.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Anne of Green Gables</div><div class="book-author">L.M. Montgomery</div>
+                    <div class="learning-point">문학적 수식어와 복잡한 복문 구조 연습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/45" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/120/pg120.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Treasure Island</div><div class="book-author">Robert Louis Stevenson</div>
+                    <div class="learning-point">사건의 전개와 긴장감 있는 문체 학습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/120" class="btn-link">Read Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="age-group">
+        <h2>고등 (High School)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/64317/pg64317.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">The Great Gatsby</div><div class="book-author">F. Scott Fitzgerald</div>
+                    <div class="learning-point">고난도 비유와 시대적 배경 어휘 학습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/64317" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/1661/pg1661.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Sherlock Holmes</div><div class="book-author">Arthur Conan Doyle</div>
+                    <div class="learning-point">논리적 전개와 추론을 위한 연결어 중심 학습.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/1661" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/84/pg84.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Frankenstein</div><div class="book-author">Mary Shelley</div>
+                    <div class="learning-point">철학적 질문과 고난도 추상 어휘.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/84" class="btn-link">Read Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="age-group">
+        <h2>성인 (Adult)</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Pride and Prejudice</div><div class="book-author">Jane Austen</div>
+                    <div class="learning-point">격식 있는 고전 영어와 사회적 담론 어휘.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/1342" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/205/pg205.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Walden</div><div class="book-author">Henry David Thoreau</div>
+                    <div class="learning-point">성찰적인 수필 형식과 깊이 있는 표현.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/205" class="btn-link">Read Online</a>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-img-container"><img src="https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg" class="book-img" alt="book"></div>
+                <div class="book-info">
+                    <div><div class="book-title">Moby Dick</div><div class="book-author">Herman Melville</div>
+                    <div class="learning-point">전문적인 기술 어휘와 서사적 문장력.</div></div>
+                    <a href="https://www.gutenberg.org/ebooks/2701" class="btn-link">Read Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    // 앱 전용 접속 스크립트 (User-Agent 검사)
+    const USER_AGENT_KEY = "MyDictionaryApp"; // 사용자 앱에서 설정할 UA 키워드
+
+    if (true) { // (navigator.userAgent.includes(USER_AGENT_KEY)) {
+        document.body.style.display = "block";
+    } else {
+        alert("이 페이지는 전 전용 사전 앱에서만 열람 가능합니다.");
+        document.body.innerHTML = "<div style='padding:50px; text-align:center;'>접근 권한이 없습니다.</div>";
+        document.body.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
