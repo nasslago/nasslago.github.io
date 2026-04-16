@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Manual</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+        body { font-family: -apple-system, sans-serif; margin: 0; background: var(--bg); color: var(--text); display: none; }
+        
+        /* 헤더 및 언어 선택기 */
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; position: relative; }
+        .lang-selector { position: absolute; top: 20px; right: 15px; }
+        select { padding: 6px 10px; border-radius: 20px; border: 1px solid #ccc; background: white; font-size: 14px; }
+
+        /* 컨텐츠 영역 */
+        .container { padding: 20px; max-width: 600px; margin: auto; padding-bottom: 50px; }
+        .step { background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .step h3 { margin-top: 0; color: var(--accent); font-size: 1.3rem; margin-bottom: 10px; }
+        .step p { margin-top: 0; margin-bottom: 20px; font-size: 1rem; line-height: 1.6; color: #555; }
+
+        /* **스크린샷 이미지 스타일** */
+        .screenshot-container {
+            width: 100%;
+            text-align: center;
+            border: 1px solid #eee; /* 이미지 테두리 */
+            border-radius: 10px;
+            overflow: hidden; /* 테두리 밖으로 이미지 안나가게 */
+            background-color: #fdfdfd; /* 이미지 로딩 전 배경색 */
+        }
+        .app-screenshot {
+            width: 100%; /* 부모 너비에 맞춤 */
+            height: auto; /* 비율 유지 */
+            display: block; /* 하단 여백 제거 */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="header-title">App Manual</h1>
+    <div class="lang-selector">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+</header>
+
+<div class="container">
+    <div class="step">
+        <h3 id="step1-title">1. 책 불러오기와 종이책 스캔</h3>
+        <p id="step1-desc">Description</p>
+        <h3 id="step2-title">2. 책 이름 변경, 지우기, 단어장 export</h3>
+        <p id="step2-desc">Description</p>
+        <h3 id="step3-title">3. 사전, 단어장 기능</h3>
+        <p id="step3-desc">Description</p>
+        
+        <div class="screenshot-container">
+            <img id="step1-img" src="" alt="App Screenshot 1" class="app-screenshot">
+        </div>
+    </div>
+
+    <div class="step">
+        <h3 id="step4-title">4. 설정 메뉴</h3>
+        <p id="step4-desc">Description</p>
+        <h3 id="step5-title">5. 목차</h3>
+        <p id="step5-desc">Description</p>
+        
+        <div class="screenshot-container">
+            <img id="step4-img" src="" alt="App Screenshot 2" class="app-screenshot">
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. **언어별 데이터 (텍스트 및 이미지 경로)**
+    const translations = {
+        ko: {
+            headerTitle: "앱 사용 설명서",
+            step1Title: "1. 책 불러오기와 종이책 스캔",
+            step1Desc: "+로 ebook 파일을 불러오고, 카메라 아이콘으로 종이책 스캔하여 txt 화일로 저장할 수 있습니다.",
+            step2Title: "2. 책 이름 변경, 지우기, 단어장 export",
+            step2Desc: "책이름을 변경하고, 책을 앱에서 지울 수 있으며, 책을 읽으며 저장된 단어장을 csv 화일로 export하여 외부 앱이나 pc에서 활용할 수 있습니다.\n스캔된 책에서는 OCR에서 오인식된 경우를 위하여 저장된 텍스트를 편집할 수 있고, 외부 활용을 위해 파일로 export 할 수 있습니다.",
+            step3Title: "3. 사전, 단어장 기능",
+            step3Desc: "본문 내의 단어를 터치하면 사전이 뜨고, 단어장에 자동 저장됩니다. 스피커 아이콘으로 발음을 들을 수도 있습니다.\n단어장을 클릭하면 저장된 단어 리스트가 나오며 단어를 터치하면 해당 단어를 찾았던 문장으로 스크롤이 되고 단어가 하이라이트 되어서 문장으로 다시 복습할 수 있습니다.",
+            // **한국어 스크린샷 파일 이름**
+            step1Img: "manual1_ko.png", 
+            
+            step4Title: "4. 설정 메뉴",
+            step4Desc: "앱 설정에서는 앱 메뉴와 메세지의 언어 선택을 할 수 있고, 종이책 스캔시 스캔일시를 자동추가 하거나 끌 수 있습니다.\n본문 설정에서는 폰트 크기와 화면 테마, 화면 밝기 조절, 사전 선택, 진행률 슬라이드를 사용할 수 있습니다.",
+            step5Title: "5. 목차",
+            step5Desc: "목차가 있는 epub 화일에서 목차를 열어서 원하는 챕터로 바로 갈 수 있습니다.",
+
+            // **한국어 스크린샷 파일 이름 (동일 이미지 사용 가능)**
+            step4Img: "manual2_ko.png" 
+        },
+        en: {
+            headerTitle: "App User Guide",
+            step1Title: "1. Importing Books & Scanning Paper Books",
+            step1Desc: "Use the '+' icon to import eBook files. You can also scan physical books with the camera icon and save them as text files.",
+            step2Title: "2. Rename, Delete, & Export Wordbooks",
+            step2Desc: "You can rename or delete books within the app. Wordbooks saved while reading can be exported as CSV files for use in external apps or on a PC.\nFor scanned books, you can edit the text to fix any OCR errors and export the content as a file for external use.",
+            step3Title: "3. Dictionary & Wordbook Features",
+            step3Desc: "Tap a word in the text to open the dictionary; it will be automatically saved to your wordbook. Tap the speaker icon to hear the pronunciation.\nClick on the Wordbook to see your saved list. Tapping a word will scroll you back to the exact sentence where you found it, with the word highlighted for contextual review.",
+            // **English Screenshot File Names**
+            step1Img: "manual1_en.png", 
+            
+            step4Title: "4. Settings Menu",
+            step4Desc: "In App Settings, you can choose the language for menus and messages, and toggle scan date auto add.\nIn Text Settings, you can adjust font size, screen themes, brightness, select dictionaries, and use the reading progress slider.",
+            step5Title: "5. Table of Contents",
+            step5Desc: "For EPUB files with a table of contents, you can open it to jump directly to your desired chapter.",
+
+            // **English Screenshot File Names**
+            step4Img: "manual2_en.png" 
+        }
+    };
+
+    // 2. 언어 변경 함수 (이미지 변경 로직 포함)
+    function changeLanguage(lang) {
+        // [A] 텍스트 변경
+        document.getElementById('header-title').textContent = translations[lang].headerTitle;
+        document.getElementById('step1-title').textContent = translations[lang].step1Title;
+        document.getElementById('step1-desc').textContent = translations[lang].step1Desc;
+        document.getElementById('step2-title').textContent = translations[lang].step2Title;
+        document.getElementById('step2-desc').textContent = translations[lang].step2Desc;
+        document.getElementById('step3-title').textContent = translations[lang].step3Title;
+        document.getElementById('step3-desc').textContent = translations[lang].step3Desc;
+        document.getElementById('step4-title').textContent = translations[lang].step4Title;
+        document.getElementById('step4-desc').textContent = translations[lang].step4Desc;
+        document.getElementById('step5-title').textContent = translations[lang].step5Title;
+        document.getElementById('step5-desc').textContent = translations[lang].step5Desc;
+
+        
+        // [B] **이미지 소스(src) 변경**
+        document.getElementById('step1-img').src = translations[lang].step1Img;
+        document.getElementById('step4-img').src = translations[lang].step4Img;
+        
+        // [C] HTML lang 속성 업데이트
+        document.documentElement.lang = lang;
+    }
+
+    // 3. 초기 설정 및 보안 (이전과 동일)
+    const ALLOWED_AGENT = "ReademAll/1.0 "; // 보안 활성화 시 사용
+    window.onload = () => {
+        // 보안 로직 (실제 앱 출시 시 활성화)
+        
+        if (!navigator.userAgent.includes(ALLOWED_AGENT)) {
+            alert("This page is only accessible from the dictionary app.");
+            window.location.href = "about:blank";
+            return;
+        }
+        
+        
+        document.body.style.display = "block"; // 페이지 표시
+
+        // URL 파라미터(?lang=) 확인 후 없으면 시스템 언어 감지
+        const urlParams = new URLSearchParams(window.location.search);
+        let selectedLang = urlParams.get('lang');
+        
+        if (!selectedLang) {
+            selectedLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+        }
+
+        // 선택된 언어로 UI 설정 (changeLanguage 함수가 내부적으로 src를 채워줌)
+        document.getElementById('langSelect').value = selectedLang;
+        changeLanguage(selectedLang);
+    };
+</script>
+
+</body>
+</html>
