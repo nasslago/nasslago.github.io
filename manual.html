@@ -76,6 +76,21 @@
             <img id="step4-img" src="" alt="App Screenshot 2" class="app-screenshot">
         </div>
     </div>
+
+    <div class="step">
+        <h3 id="step6-title">6. Free ebook site</h3>
+        <p id="step6-desc">Description</p>
+        <p id="step7-desc">Description</p>
+        <p id="step8-desc">Description</p>
+        <p id="step9-desc">Description</p>
+        <p id="step10-desc">Description</p>
+        <p id="step11-desc">Description</p>
+        
+        <div class="screenshot-container">
+            <img id="step6-img" src="" alt="App Screenshot 3" class="app-screenshot">
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -98,7 +113,19 @@
             step5Desc: "목차가 있는 epub 화일에서 목차를 열어서 원하는 챕터로 바로 갈 수 있습니다.",
 
             // **한국어 스크린샷 파일 이름 (동일 이미지 사용 가능)**
-            step4Img: "manual2_ko.png" 
+            step4Img: "manual2_ko.png", 
+
+            step6Title: "6. Free ebook site",
+            step6Desc: "Free ebook site에 접속해서 도서 검색 및 다운로드하여 ebook을 모바일 기기에 저장하세요. 이때, epub 혹은 compatible epub로 선택하시면 됩니다.",
+            step7Desc: "<strong>Project Gutenberg :</strong> 저작권이 만료된 고전 문학 작품을 무료로 제공하는 가장 오래된 디지털 도서관으로, 60,000권 이상의 책을 EPUB, Kindle, TXT 등 다양한 형식으로 다운로드할 수 있습니다. 자원봉사자들이 스캔하고 변환한 책들이 주를 이루며, 서구 문학 중심입니다.",
+            step8Desc: "<strong>Standard Ebooks :</strong> 공공 도메인 책을 현대적인 타이포그래피와 고품질 표지, 팝업 각주 등으로 재제작한 무료 전자책 프로젝트입니다. 오탈자 교정과 세련된 메타데이터가 특징으로, 일반 무료 ebook보다 읽기 편안합니다.",
+            step9Desc: "<strong>ManyBooks :</strong> 공공 도메인 고전과 일부 현대 무료/할인 도서를 큐레이션해 제공하는 사이트로, 다양한 장르와 사용자 리뷰가 강점입니다. 편리한 검색과 EPUB/PDF 형식 지원으로 초보자 친화적입니다.",
+            step10Desc: "<strong>Smashwords :</strong> 작가들이 직접 판매/무료 배포하는 플랫폼으로, '무료' 필터를 통해 소설, 논픽션 등 인디 작품을 다운로드할 수 있습니다. DRM 없이 EPUB, PDF, MOBI 형식 지원하며, 다양한 카테고리가 특징입니다.",
+            step11Desc: "<strong>Let's Read :</strong> 아시아 재단의 앱 기반 디지털 도서관으로, 현지 작가의 동화와 어린이 책을 다국어(한국어 포함)로 100% 무료 제공합니다. 오프라인 다운로드와 언어 전환이 가능하며, 소외 언어 콘텐츠에 초점 맞췄습니다.",
+
+            // **한국어 스크린샷 파일 이름**
+            step6Img: "manual3_ko.png"
+
         },
         en: {
             headerTitle: "App User Guide",
@@ -117,7 +144,19 @@
             step5Desc: "For EPUB files with a table of contents, you can open it to jump directly to your desired chapter.",
 
             // **English Screenshot File Names**
-            step4Img: "manual2_en.png" 
+            step4Img: "manual2_en.png",
+
+            step6Title: "6. Free ebook site",
+            step6Desc: "Access a free ebook site to search for books and download them to save ebooks on your mobile device. Choose EPUB or compatible EPUB format when doing so.",
+            step7Desc: "<strong>Project Gutenberg :</strong> The oldest digital library offering copyright-expired classic literary works for free, with over 60,000 books available for download in formats like EPUB, Kindle, and TXT. It mainly features books scanned and converted by volunteers, centered on Western literature.",
+            step8Desc: "<strong>Standard Ebooks :</strong> A free ebook project that recreates public domain books with modern typography, high-quality covers, pop-up footnotes, and more. It stands out with corrected typos and refined metadata, making it more comfortable to read than typical free ebooks.",
+            step9Desc: "<strong>ManyBooks :</strong> A site that curates public domain classics and some modern free/discounted books, with strengths in diverse genres and user reviews. It offers user-friendly search and supports EPUB/PDF formats, making it beginner-friendly.",
+            step10Desc: "<strong>Smashwords :</strong> A platform where authors directly sell/distribute books, allowing downloads of indie novels, non-fiction, etc., via a 'free' filter. It supports DRM-free EPUB, PDF, and MOBI formats, featuring various categories.",
+            step11Desc: "<strong>Let's Read :</strong> The Asia Foundation's app-based digital library, providing 100% free access to folktales and children's books by local authors in multiple languages. It allows offline downloads and language switching, focusing on content in marginalized languages.",
+
+            // **한국어 스크린샷 파일 이름**
+            step6Img: "manual3_en.png"
+
         }
     };
 
@@ -135,11 +174,19 @@
         document.getElementById('step4-desc').textContent = translations[lang].step4Desc;
         document.getElementById('step5-title').textContent = translations[lang].step5Title;
         document.getElementById('step5-desc').textContent = translations[lang].step5Desc;
+        document.getElementById('step6-title').textContent = translations[lang].step6Title;
+        document.getElementById('step6-desc').textContent = translations[lang].step6Desc;
+        document.getElementById('step7-desc').innerHTML = translations[lang].step7Desc;
+        document.getElementById('step8-desc').innerHTML = translations[lang].step8Desc;
+        document.getElementById('step9-desc').innerHTML = translations[lang].step9Desc;
+        document.getElementById('step10-desc').innerHTML = translations[lang].step10Desc;
+        document.getElementById('step11-desc').innerHTML = translations[lang].step11Desc;
 
         
         // [B] **이미지 소스(src) 변경**
         document.getElementById('step1-img').src = translations[lang].step1Img;
         document.getElementById('step4-img').src = translations[lang].step4Img;
+        document.getElementById('step6-img').src = translations[lang].step6Img;
         
         // [C] HTML lang 속성 업데이트
         document.documentElement.lang = lang;
