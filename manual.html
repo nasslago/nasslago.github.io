@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Manual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2c3e50;
@@ -11,7 +14,7 @@
             --bg: #f8f9fa;
             --text: #333;
         }
-        body { font-family: -apple-system, sans-serif; margin: 0; background: var(--bg); color: var(--text); display: none; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: var(--bg); color: var(--text); display: none; }
         
         /* 헤더 및 언어 선택기 */
         header { background: var(--primary); color: white; padding: 20px; text-align: center; position: relative; }
@@ -191,6 +194,7 @@
         // [C] HTML lang 속성 업데이트
         document.documentElement.lang = lang;
     }
+
 
     // 3. 초기 설정 및 보안 (이전과 동일)
     const ALLOWED_AGENT = "ReademAll/1.0"; // 보안 활성화 시 사용
