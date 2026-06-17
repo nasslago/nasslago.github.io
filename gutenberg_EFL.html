@@ -140,7 +140,7 @@
     }
 
     // User-Agent 검사 및 초기화
-    if (navigator.userAgent.includes(USER_AGENT_KEY)) {
+    if (navigator.userAgent.includes(USER_AGENT_KEY) || window.READEMALL_APP === true) {
         const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en');
         document.getElementById('lang-select').value = savedLang;
         render(savedLang);
