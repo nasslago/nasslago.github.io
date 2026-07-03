@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Manual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: var(--bg); color: var(--text); display: none; }
+        
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; position: relative; }
+        .lang-selector { position: absolute; top: 20px; right: 15px; }
+        select { padding: 6px 10px; border-radius: 20px; border: 1px solid #ccc; background: white; font-size: 14px; }
+
+        .view-controls {
+            display: flex; justify-content: center; background: white; padding: 10px 0;
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .switch-container { display: flex; background: #eee; border-radius: 20px; padding: 3px; width: 200px; }
+        .switch-btn {
+            flex: 1; border: none; padding: 8px 0; border-radius: 17px;
+            cursor: pointer; font-size: 14px; background: transparent; transition: all 0.3s;
+        }
+        .switch-btn.active { background: var(--accent); color: white; font-weight: bold; }
+
+        .container { padding: 20px; max-width: 600px; margin: auto; padding-bottom: 50px; }
+        .step { background: white; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        
+        .step h3 { margin-top: 15px; margin-bottom: 10px; color: var(--accent); font-size: 1.2rem; }
+        .step h3:first-child { margin-top: 0; }
+
+        .detail-content { display: none; margin-bottom: 15px; }
+        .detail-content p { margin-top: 0; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.6; color: #555; white-space: pre-line; }
+
+        .screenshot-container {
+            width: 100%; text-align: center; border: 1px solid #eee;
+            border-radius: 10px; overflow: hidden; background-color: #fdfdfd; margin-top: 10px;
+        }
+        .app-screenshot { width: 100%; height: auto; display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="header-title">App Manual</h1>
+    <div class="lang-selector">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+</header>
+
+<div class="view-controls">
+    <div class="switch-container">
+        <button id="btn-simple" class="switch-btn active" onclick="setViewMode('simple')">Simple</button>
+        <button id="btn-detail" class="switch-btn" onclick="setViewMode('detail')">Detail</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="step">
+        <h3 id="step1-title">Title 1</h3>
+        <div class="detail-content"><p id="step1-desc">Desc</p></div>
+        
+        <h3 id="step2-title">Title 2</h3>
+        <div class="detail-content"><p id="step2-desc">Desc</p></div>
+        
+        <h3 id="step3-title">Title 3</h3>
+        <div class="detail-content"><p id="step3-desc">Desc</p></div>
+        
+        <div class="screenshot-container">
+            <img id="step1-img" src="" alt="Screenshot 1" class="app-screenshot">
+        </div>
+    </div>
+
+    <div class="step">
+        <h3 id="step4-title">Title 4</h3>
+        <div class="detail-content"><p id="step4-desc">Desc</p></div>
+        
+        <h3 id="step5-title">Title 5</h3>
+        <div class="detail-content"><p id="step5-desc">Desc</p></div>
+        
+        <div class="screenshot-container">
+            <img id="step4-img" src="" alt="Screenshot 2" class="app-screenshot">
+        </div>
+    </div>
+
+    <div class="step">
+        <h3 id="step6-title">Title 6</h3>
+        <div class="detail-content">
+            <p id="step6-desc">Desc</p>
+            <p id="step7-desc">Desc</p>
+            <p id="step8-desc">Desc</p>
+            <p id="step9-desc">Desc</p>
+            <p id="step10-desc">Desc</p>
+            <p id="step11-desc">Desc</p>
+        </div>
+        
+        <div class="screenshot-container">
+            <img id="step6-img" src="" alt="Screenshot 3" class="app-screenshot">
+        </div>
+    </div>
+
+    <div class="step">
+        <h3 id="step12-title">Title 12</h3>
+        <div class="detail-content"><p id="step12-desc">Desc</p></div>
+        
+        <h3 id="step13-title">Title 13</h3>
+        <div class="detail-content"><p id="step13-desc">Desc</p></div>
+        
+        <div class="screenshot-container">
+            <img id="step12-img" src="" alt="Screenshot 4" class="app-screenshot">
+        </div>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        ko: {
+            headerTitle: "앱 사용 설명서",
+            step1Title: "1. 책 불러오기와 종이책 스캔",
+            step1Desc: "+로 ebook 파일을 불러오고, 카메라 아이콘으로 종이책 스캔하여 txt 화일로 저장할 수 있습니다.",
+            step2Title: "2. 책 이름 변경, 지우기, 단어장 export",
+            step2Desc: "책이름을 변경하고, 책을 앱에서 지울 수 있으며, 책을 읽으며 저장된 단어장을 csv 화일로 export하여 외부 앱이나 pc에서 활용할 수 있습니다.\n스캔된 책에서는 OCR에서 오인식된 경우를 위하여 저장된 텍스트를 편집할 수 있고, 외부 활용을 위해 파일로 export 할 수 있습니다.",
+            step3Title: "3. 사전, 단어장 기능",
+            step3Desc: "본문 내의 단어를 터치하면 사전이 뜨고, 단어장에 자동 저장됩니다. 스피커 아이콘으로 발음을 들을 수도 있습니다.\n단어장을 클릭하면 저장된 단어 리스트가 나오며 단어를 터치하면 해당 단어를 찾았던 문장으로 스크롤이 되고 단어가 하이라이트 되어서 문장으로 다시 복습할 수 있습니다. 뜻을 숨기거나 보이게 할 수 있고, 암기완료한 단어를 체크하고 필터링해서 암기가 필요한 단어만 보이게도 할 수 있습니다.",
+            step1Img: "manual1_ver6_ko_ios.png", 
+            step4Title: "4. 설정 메뉴",
+            step4Desc: "앱 설정에서는 앱 메뉴와 메세지의 언어 선택을 할 수 있고, 종이책 스캔시 스캔일시를 자동추가 하거나 끌 수 있습니다. 여러 언어의 사전을 선택하여 설치 할 수 있으며 기기변경이나 앱 재설치의 경우를 위해 단어장, 열어본 페이지 등 앱 데이터를 백업하고 복원할 수도 있습니다. \n본문 설정에서는 폰트 크기와 화면 테마, 화면 밝기 조절, 사전 선택, 진행률 슬라이드를 사용할 수 있습니다.",
+            step5Title: "5. 목차",
+            step5Desc: "목차가 있는 epub 화일에서 목차를 열어서 원하는 챕터로 바로 갈 수 있습니다.",
+            step4Img: "manual2_ver6_ko_ios.png", 
+            step6Title: "6. Free ebook site",
+            step6Desc: "Free ebook site에 접속해서 도서 검색 및 다운로드하여 ebook을 모바일 기기에 저장하세요. 이때, epub 혹은 compatible epub로 선택하시면 됩니다.",
+            step7Desc: "<strong>Project Gutenberg :</strong> 저작권이 만료된 고전 문학 작품을 무료로 제공하는 가장 오래된 디지털 도서관으로, 60,000권 이상의 책을 EPUB, Kindle, TXT 등 다양한 형식으로 다운로드할 수 있습니다. 자원봉사자들이 스캔하고 변환한 책들이 주를 이루며, 서구 문학 중심입니다.",
+            step8Desc: "<strong>Standard Ebooks :</strong> 공공 도메인 책을 현대적인 타이포그래피와 고품질 표지, 팝업 각주 등으로 재제작한 무료 전자책 프로젝트입니다. 오탈자 교정과 세련된 메타데이터가 특징으로, 일반 무료 ebook보다 읽기 편안합니다.",
+            step9Desc: "<strong>ManyBooks :</strong> 공공 도메인 고전과 일부 현대 무료/할인 도서를 큐레이션해 제공하는 사이트로, 다양한 장르와 사용자 리뷰가 강점입니다. 편리한 검색과 EPUB/PDF 형식 지원으로 초보자 친화적입니다.",
+            step10Desc: "<strong>Smashwords :</strong> 작가들이 직접 판매/무료 배포하는 플랫폼으로, '무료' 필터를 통해 소설, 논픽션 등 인디 작품을 다운로드할 수 있습니다. DRM 없이 EPUB, PDF, MOBI 형식 지원하며, 다양한 카테고리가 특징입니다.",
+            step11Desc: "<strong>Let's Read :</strong> 아시아 재단의 앱 기반 디지털 도서관으로, 현지 작가의 동화와 어린이 책을 다국어(한국어 포함)로 100% 무료 제공합니다. 오프라인 다운로드와 언어 전환이 가능하며, 소외 언어 콘텐츠에 초점 맞췄습니다.",
+            step6Img: "manual3_ver6_ko_ios.png",
+            step12Title: "7. 웹페이지 뷰어",
+            step12Desc: "영어의 웹페이지를 열어서 볼 수 있습니다. 웹페이지 주소로 열 수도 있고, RSS News 셋팅에서 선택한 뉴스채널에서 기사를 선택해서 읽을 수도 있습니다. 열어본 페이지들은 읽은 페이지에 자동 저장되어 다시 읽기도 가능합니다.",
+            step13Title: "8. 단어장 복습",
+            step13Desc: "단어장 복습 페이지에서 찾아봤던 단어를 복습할 수 있습니다. 책이나 웹페이지로 구분되어 있고, 공부를 위해 뜻과 검색시 단어가 있던 문장이 예문으로 나오며, 뜻을 숨기거나 보이게도 할 수 있습니다. 암기여부를 체크해서 암기된 단어는 단어장 리스트에서 숨기기도 가능합니다.",
+            step12Img: "manual4_ver6_ko_ios.png"
+        },
+        en: {
+            headerTitle: "App User Guide",
+            step1Title: "1. Importing Books & Scanning Paper Books",
+            step1Desc: "Use the '+' icon to import eBook files. You can also scan physical books with the camera icon and save them as text files.",
+            step2Title: "2. Rename, Delete, & Export Wordbooks",
+            step2Desc: "You can rename or delete books within the app. Wordbooks saved while reading can be exported as CSV files for use in external apps or on a PC.\nFor scanned books, you can edit the text to fix any OCR errors and export the content as a file for external use.",
+            step3Title: "3. Dictionary & Wordbook Features",
+            step3Desc: "Tap a word in the text to open the dictionary; it will be automatically saved to your wordbook. Tap the speaker icon to hear the pronunciation.\nClick on the Wordbook to see your saved list. Tapping a word will scroll you back to the exact sentence where you found it, with the word highlighted for contextual review. Meanings of words can be showed or hided for practice, and memorized words can be checked and filtered out to focus on the unmemorized words.",
+            step1Img: "manual1_ver6_en_ios.png", 
+            step4Title: "4. Settings Menu",
+            step4Desc: "In App Settings, you can choose the language for menus and messages, and toggle scan date auto add. You can manage dictionaries and backup or recover your app data such as wordlist, bookmarks for the case of reinstall or device changes.\nIn Text Settings, you can adjust font size, screen themes, brightness, select dictionaries, and use the reading progress slider.",
+            step5Title: "5. Table of Contents",
+            step5Desc: "For EPUB files with a table of contents, you can open it to jump directly to your desired chapter.",
+            step4Img: "manual2_ver6_en_ios.png",
+            step6Title: "6. Free ebook site",
+            step6Desc: "Access a free ebook site to search for books and download them to save ebooks on your mobile device. Choose EPUB or compatible EPUB format when doing so.",
+            step7Desc: "<strong>Project Gutenberg :</strong> The oldest digital library offering copyright-expired classic literary works for free, with over 60,000 books available for download in formats like EPUB, Kindle, and TXT. It mainly features books scanned and converted by volunteers, centered on Western literature.",
+            step8Desc: "<strong>Standard Ebooks :</strong> A free ebook project that recreates public domain books with modern typography, high-quality covers, pop-up footnotes, and more. It stands out with corrected typos and refined metadata, making it more comfortable to read than typical free ebooks.",
+            step9Desc: "<strong>ManyBooks :</strong> A site that curates public domain classics and some modern free/discounted books, with strengths in diverse genres and user reviews. It offers user-friendly search and supports EPUB/PDF formats, making it beginner-friendly.",
+            step10Desc: "<strong>Smashwords :</strong> A platform where authors directly sell/distribute books, allowing downloads of indie novels, non-fiction, etc., via a 'free' filter. It supports DRM-free EPUB, PDF, and MOBI formats, featuring various categories.",
+            step11Desc: "<strong>Let's Read :</strong> The Asia Foundation's app-based digital library, providing 100% free access to folktales and children's books by local authors in multiple languages. It allows offline downloads and language switching, focusing on content in marginalized languages.",
+            step6Img: "manual3_ver6_en_ios.png",
+            step12Title: "7. Web Page Viewer",
+            step12Desc: "You can navigate to the Web Page Viewer from the Main Bookshelf by swiping or tapping the arrow in the left corner. You can open pages directly via URL or select articles from the news channels you've configured in the RSS News settings. Viewed pages are automatically saved in your 'Recent Pages' list for easy access later.",
+            step13Title: "8. Wordbook Review",
+            step13Desc: "Navigate to the Wordbook Review page from the Main Bookshelf by swiping or tapping the arrow in the right corner. Words are categorized by 'Book' or 'Web Page'. For effective study, the app displays definitions alongside the original sentences where the words were found. You can toggle the visibility of definitions (hide/show) and mark words as 'Memorized' to filter them out from your list.",
+            step12Img: "manual4_ver6_en_ios.png"
+        }
+    };
+
+    function setViewMode(mode) {
+        const detailContents = document.querySelectorAll('.detail-content');
+        const btnSimple = document.getElementById('btn-simple');
+        const btnDetail = document.getElementById('btn-detail');
+
+        if (mode === 'detail') {
+            detailContents.forEach(el => el.style.display = 'block');
+            btnDetail.classList.add('active');
+            btnSimple.classList.remove('active');
+        } else {
+            detailContents.forEach(el => el.style.display = 'none');
+            btnSimple.classList.add('active');
+            btnDetail.classList.remove('active');
+        }
+    }
+
+    function changeLanguage(lang) {
+        document.getElementById('header-title').textContent = translations[lang].headerTitle;
+        for (let i = 1; i <= 13; i++) {
+            const title = document.getElementById(`step${i}-title`);
+            const desc = document.getElementById(`step${i}-desc`);
+            if (title) title.textContent = translations[lang][`step${i}Title`];
+            if (desc) desc.innerHTML = translations[lang][`step${i}Desc`];
+        }
+        document.getElementById('step1-img').src = translations[lang].step1Img;
+        document.getElementById('step4-img').src = translations[lang].step4Img;
+        document.getElementById('step6-img').src = translations[lang].step6Img;
+        document.getElementById('step12-img').src = translations[lang].step12Img;
+        document.documentElement.lang = lang;
+    }
+
+    const ALLOWED_AGENT = "ReademAll/1.0"; // 보안 활성화 시 사용
+    
+    window.onload = () => {
+        if (!navigator.userAgent.includes(ALLOWED_AGENT)) {
+            alert("This page is only accessible from the dictionary app.");
+            window.location.href = "about:blank";
+            return;
+        }
+        document.body.style.display = "block";
+        const urlParams = new URLSearchParams(window.location.search);
+        let selectedLang = urlParams.get('lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en');
+        document.getElementById('langSelect').value = selectedLang;
+        changeLanguage(selectedLang);
+        setViewMode('simple');
+    };
+</script>
+</body>
+</html>
